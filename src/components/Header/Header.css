@@ -1,0 +1,36 @@
+.header-logo {
+  text-align: center;
+}
+
+#logo {
+  width: 300px;
+}
+
+.nav_links {
+  display: flex;
+  background-color: #080808;
+  padding: 20px 10px;
+}
+.nav_link {
+  list-style: none;
+}
+.nav_link a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  margin-left: 20px;
+}
+.search-area {
+  background-color: #222222;
+  padding: 0 50px;
+  height: 100px;
+  margin-top: -20px;
+}
+.search-area input {
+  width: 75%;
+  margin: 40px 0 0 190px;
+  background-color: #fff;
+  padding: 7px 7px;
+  border: none;
+  outline: none;
+}
