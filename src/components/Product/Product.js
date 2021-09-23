@@ -36,7 +36,7 @@ const Feature = (props) => {
         <small>
           {" "}
           <li>
-            {description}: {value}
+            {description}: <span className="pd-value">{value}</span>
           </li>
         </small>
       </ul>
