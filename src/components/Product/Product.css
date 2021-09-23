@@ -1,0 +1,24 @@
+.product {
+  display: flex;
+  border-bottom: 1px solid lightgray;
+}
+.product-info {
+  margin-left: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.product-feature {
+  margin: 8rem 0 0 3rem;
+  font-size: 13px;
+  color: gray;
+  font-weight: 700;
+}
+.buy-btn {
+  width: 200px;
+  padding: 5px 0;
+  margin-bottom: 5px;
+  background-color: #f0c14b;
+  border: none;
+  border-color: lightgray;
+}
