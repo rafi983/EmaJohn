@@ -11,7 +11,7 @@
 .product-feature {
   margin: 8rem 0 0 3rem;
   font-size: 13px;
-  color: gray;
+  color: #080808;
   font-weight: 700;
 }
 .pd-value {
@@ -25,4 +25,5 @@
   background-color: #f0c14b;
   border: none;
   border-color: lightgray;
+  cursor: pointer;
 }

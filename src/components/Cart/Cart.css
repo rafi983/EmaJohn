@@ -1,0 +1,13 @@
+.order-summary,
+.items-ordered {
+  text-align: center;
+}
+.items-charge p small {
+  margin-left: 1rem;
+}
+.total-amount {
+  text-align: center;
+}
+.items-charge button {
+  margin-left: 3rem;
+}
