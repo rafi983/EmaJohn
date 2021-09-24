@@ -7,10 +7,15 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
+  const [displayProducts, setDisplayProducts] = useState([]);
+
   useEffect(() => {
     fetch("./products.JSON")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        setProducts(data);
+        setDisplayProducts(data);
+      });
   }, []);
 
   const handleAddToCart = (product) => {
@@ -18,13 +23,33 @@ const Shop = () => {
     setCart(newCart);
   };
 
+  const handleSearch = (event) => {
+    console.log(event.target.value);
+    const searchText = event.target.value;
+
+    const matchedProducts = products.filter((product) =>
+      product.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+    setDisplayProducts(matchedProducts);
+  };
+
   return (
     <div>
+      <div className="search-area">
+        <input
+          type="text"
+          onChange={handleSearch}
+          placeholder="search product"
+        />
+      </div>
+
       <div className="shop-container">
         <div className="products-container">
           <h1>products</h1>
-          {products.map((product) => (
+          {displayProducts.map((product) => (
             <Product
+              key={product.key}
               product={product}
               handleAddToCart={handleAddToCart}
             ></Product>

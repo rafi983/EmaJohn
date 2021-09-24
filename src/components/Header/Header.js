@@ -22,10 +22,6 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-
-      <div className="search-area">
-        <input type="text" placeholder="type hero to search" />
-      </div>
     </div>
   );
 };
