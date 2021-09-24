@@ -24,7 +24,6 @@ const Shop = () => {
   };
 
   const handleSearch = (event) => {
-    console.log(event.target.value);
     const searchText = event.target.value;
 
     const matchedProducts = products.filter((product) =>
