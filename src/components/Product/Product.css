@@ -7,7 +7,16 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+.pd-name {
+  color: #8400FF;
+  font-size: 20px;
+  font-weight: 400;
+}
 
+.rating {
+  font-size: 20px;
+  color: #FFBD00;
+}
 .product-feature {
   margin: 8rem 0 0 3rem;
   font-size: 13px;
