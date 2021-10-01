@@ -26,7 +26,7 @@ const Cart = (props) => {
       </h3>
       <div className="items-charge">
         <p>
-          <small>Items: </small> $<span>{totalQuantity}</span>
+          <small>Items: </small> <span>{totalQuantity}</span>
         </p>
         <p>
           <small>Shipping & Handling:</small> $<span>{shipping}</span>
