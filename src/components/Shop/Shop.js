@@ -35,17 +35,18 @@ const Shop = () => {
   }, [products]);
 
   const handleAddToCart = (product) => {
-    let newCart = [...cart];
-    const isExist = cart.find((eP) => eP.key === product.key);
-    if (isExist) {
-      product.quantity = product.quantity + 1;
+    const exists = cart.find((pd) => pd.key === product.key);
+    let newCart = [];
+    if (exists) {
+      const rest = cart.filter((pd) => pd.key !== product.key);
+      exists.quantity = exists.quantity + 1;
+      newCart = [...rest, product];
     } else {
       product.quantity = 1;
-      newCart.push(product);
+      newCart = [...cart, product];
     }
     setCart(newCart);
 
-    // save to local storage (for now)
     addToDb(product.key);
   };
 
