@@ -1,6 +1,7 @@
 .product {
   display: flex;
   border-bottom: 1px solid lightgray;
+  padding: 2rem 0;
 }
 .product-info {
   margin-left: 10px;
@@ -8,14 +9,14 @@
   grid-template-columns: repeat(2, 1fr);
 }
 .pd-name {
-  color: #8400FF;
+  color: #8400ff;
   font-size: 20px;
   font-weight: 400;
 }
 
 .rating {
   font-size: 20px;
-  color: #FFBD00;
+  color: #ffbd00;
 }
 .product-feature {
   margin: 8rem 0 0 3rem;
@@ -27,7 +28,7 @@
   font-weight: 900;
   color: #080808;
 }
-.buy-btn {
+.btn-regular {
   width: 200px;
   padding: 5px 0;
   margin-bottom: 5px;

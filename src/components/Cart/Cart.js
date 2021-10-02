@@ -40,7 +40,7 @@ const Cart = (props) => {
         <h2 className="total-amount">
           Order total: $<span>{grandTotal.toFixed(2)}</span>
         </h2>
-        <button className="buy-btn">Review your order</button>
+        {props.children}
       </div>
     </div>
   );

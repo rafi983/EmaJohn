@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import logo from "../../images/logo.png";
 import "./Header.css";
 
@@ -12,13 +13,13 @@ const Header = () => {
       <nav className="nav">
         <ul className="nav_links">
           <li className="nav_link">
-            <a href="/#">Shop</a>
+            <NavLink to="/shop">Shop</NavLink>
           </li>
           <li className="nav_link">
-            <a href="/#">Order Review</a>
+            <NavLink to="/review">Order Review</NavLink>
           </li>
           <li className="nav_link">
-            <a href="/#">Manage Inventory here</a>
+            <NavLink to="/inventory">Manage Inventory here</NavLink>
           </li>
         </ul>
       </nav>

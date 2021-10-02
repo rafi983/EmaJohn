@@ -1,0 +1,11 @@
+.pd {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.product-shipping {
+  margin-top: 5rem;
+}
+.product-shipping label {
+  color: green;
+  font-weight: 800;
+}

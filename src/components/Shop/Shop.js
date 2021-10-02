@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { addToDb, getStoredCart } from "../../utilities/fakedb";
+import { Link } from "react-router-dom";
+import useCart from "../../hooks/useCart";
+import { addToDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
 import "./Shop.css";
 const Shop = () => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useCart(products);
 
   const [displayProducts, setDisplayProducts] = useState([]);
 
@@ -17,22 +19,6 @@ const Shop = () => {
         setDisplayProducts(data);
       });
   }, []);
-
-  useEffect(() => {
-    if (products.length) {
-      const savedCart = getStoredCart();
-      const storedCart = [];
-      for (const key in savedCart) {
-        const addedProduct = products.find((product) => product.key === key);
-        if (addedProduct) {
-          const quantity = savedCart[key];
-          addedProduct.quantity = quantity;
-          storedCart.push(addedProduct);
-        }
-      }
-      setCart(storedCart);
-    }
-  }, [products]);
 
   const handleAddToCart = (product) => {
     const exists = cart.find((pd) => pd.key === product.key);
@@ -82,7 +68,11 @@ const Shop = () => {
           ))}
         </div>
         <div className="cart-container">
-          <Cart cart={cart} />
+          <Cart cart={cart}>
+            <Link to="/review">
+              <button className="btn-regular">Review your order</button>
+            </Link>
+          </Cart>
         </div>
       </div>
     </div>
