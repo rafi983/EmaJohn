@@ -1,11 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import google from "../../icons/googleicon.png";
 import "./Login.css";
 
 const Login = () => {
-  const { handleGoogleClick } = useAuth();
+  const { signInUsingGoogle } = useAuth();
+
+  const location = useLocation();
+  const history = useHistory();
+
+  const redirect_uri = location.state?.from || "/shop";
+
+  const handleGoogleClick = () => {
+    signInUsingGoogle().then((result) => {
+      history.push(redirect_uri);
+    });
+  };
 
   return (
     <div className="form">

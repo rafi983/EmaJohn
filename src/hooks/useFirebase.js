@@ -16,10 +16,8 @@ const useFirebase = () => {
 
   const auth = getAuth();
 
-  const handleGoogleClick = () => {
-    signInWithPopup(auth, googleProvider).then((result) =>
-      setUser(result.user)
-    );
+  const signInUsingGoogle = () => {
+    return signInWithPopup(auth, googleProvider);
   };
 
   const logOut = () => {
@@ -38,7 +36,7 @@ const useFirebase = () => {
 
   return {
     user,
-    handleGoogleClick,
+    signInUsingGoogle,
     logOut,
   };
 };
