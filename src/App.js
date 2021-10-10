@@ -9,6 +9,7 @@ import OrderPlaced from "./components/OrderPlaced/OrderPlaced";
 import OrderReview from "./components/OrderReview/OrderReview";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Register from "./components/Register/Register";
+import Shipping from "./components/Shipping/Shipping";
 import Shop from "./components/Shop/Shop";
 import AuthProvider from "./context/AuthProvider";
 
@@ -36,6 +37,10 @@ function App() {
 
           <PrivateRoute exact path="/placeorder">
             <OrderPlaced />
+          </PrivateRoute>
+
+          <PrivateRoute exact path="/shipping">
+            <Shipping />
           </PrivateRoute>
 
           <Route exact path="/login">
