@@ -54,14 +54,14 @@ const Register = () => {
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="retype-Password" className="col-sm-2 col-form-label">
+          <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">
             Retype Password
           </label>
           <div className="col-sm-10">
             <input
-              type="retype-password"
+              type="password"
               className="form-control ms-5"
-              id="retype-Password"
+              id="inputPassword3"
             />
           </div>
         </div>
