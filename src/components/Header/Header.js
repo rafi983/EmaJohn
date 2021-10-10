@@ -10,7 +10,7 @@ const Header = () => {
         <img id="logo" src={logo} alt="" />
       </div>
 
-      <nav className="nav">
+      <nav className="nav ">
         <ul className="nav_links">
           <li className="nav_link">
             <NavLink to="/shop">Shop</NavLink>
@@ -20,6 +20,10 @@ const Header = () => {
           </li>
           <li className="nav_link">
             <NavLink to="/inventory">Manage Inventory here</NavLink>
+          </li>
+
+          <li className="nav_link">
+            <NavLink to="/login">Login</NavLink>
           </li>
         </ul>
       </nav>
