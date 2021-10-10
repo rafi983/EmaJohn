@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import google from "../../icons/googleicon.png";
 import "./Login.css";
 
 const Login = () => {
-  const handleGoogleClick = () => {
-    console.log("clicked");
-  };
+  const { handleGoogleClick } = useAuth();
 
   return (
     <div className="form">

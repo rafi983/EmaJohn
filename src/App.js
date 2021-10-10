@@ -9,10 +9,11 @@ import OrderPlaced from "./components/OrderPlaced/OrderPlaced";
 import OrderReview from "./components/OrderReview/OrderReview";
 import Register from "./components/Register/Register";
 import Shop from "./components/Shop/Shop";
+import AuthProvider from "./context/AuthProvider";
 
 function App() {
   return (
-    <div>
+    <AuthProvider>
       <Router>
         <Header />
         <Switch>
@@ -49,7 +50,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </div>
+    </AuthProvider>
   );
 }
 
