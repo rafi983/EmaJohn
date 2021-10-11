@@ -1,0 +1,25 @@
+.form {
+  background-color: #dff9fb;
+}
+label img {
+  width: 50px;
+}
+.userInputForm {
+  background-color: #c7ecee !important;
+  font-family: "Ubuntu Mono", monospace;
+}
+.btn-form {
+  padding: 0.5rem 3rem;
+  border: none;
+  outline: none;
+  background-color: #7ed6df;
+  font-family: "Ubuntu Mono", monospace;
+}
+.btn-form2 {
+  background-color: #22a6b3;
+  padding: 0.5rem 2rem;
+  border: none;
+  outline: none;
+  margin-bottom: 1rem;
+  font-family: "Ubuntu Mono", monospace;
+}

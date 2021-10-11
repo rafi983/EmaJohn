@@ -1,138 +1,77 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import email from "../../icons/email.png";
+import facebook from "../../icons/facebook.png";
 import google from "../../icons/googleicon.png";
+import password from "../../icons/password.png";
+import user from "../../icons/user.png";
+import yahoo from "../../icons/yahoo.png";
+import "./Register.css";
 
 const Register = () => {
-  const { auth, createUserWithEmailAndPassword, user } = useAuth();
-  const [msg, setMsg] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleRegistration = (e) => {
-    e.preventDefault();
-
-    if (password.length < 6) {
-      setError("Password Must be at least 6 characters long.");
-      setMsg("");
-      return;
-    }
-
-    if (!/^(?=.*[a-z]).*$/.test(password)) {
-      setError("Password must have at least one Lowercase Character.");
-      setMsg("");
-      return;
-    }
-    if (!/^(?=.*[0-9]).*$/.test(password)) {
-      setError("Password must contain at least one Digit.");
-      setMsg("");
-      return;
-    }
-    if (!/^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/.test(password)) {
-      setError("Password must contain at least one Special Symbol.");
-      setMsg("");
-      return;
-    }
-    if (!/^.{6,10}$/.test(password)) {
-      setError("Password must be 6-10 Characters Long.");
-      setMsg("");
-      return;
-    }
-    if (!/^(?=.*[A-Z]).*$/.test(password)) {
-      setError("Password must have at least one Uppercase Character.");
-      setMsg("");
-      return;
-    }
-
-    if (user.email) {
-      setMsg("Registration successful, Please Login");
-    }
-
-    newUserRegister(email, password);
-  };
-
-  const newUserRegister = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        setError("");
-      })
-      .catch((error) => {
-        setError(error.message);
-        setMsg("");
-      });
-  };
-
   return (
-    <div className="form ">
-      <form onSubmit={handleRegistration}>
+    <div className="form">
+      <form>
         <h1 className="mb-4">Register your account</h1>
-        <div className="row mb-3">
-          <label htmlFor="name" className="col-sm-2 col-form-label">
-            Name
+        <div className="row mb-3 d-flex align-items-center">
+          <label htmlFor="name" className="col-sm-1 col-form-label">
+            <img src={user} alt="" />
           </label>
-          <div className="col-sm-10">
-            <input type="name" className="form-control ms-5" id="name" />
+          <div className="col-sm-11">
+            <input
+              type="name"
+              placeholder="Your Name..."
+              className="form-control ms-5 userInputForm"
+              id="name"
+              required
+            />
           </div>
         </div>
 
-        <div className="row mb-3">
-          <label htmlFor="phone" className="col-sm-2 col-form-label">
-            Mobile
+        <div className="row mb-3  d-flex  align-items-center">
+          <label htmlFor="inputEmail3" className="col-sm-1 col-form-label ">
+            <img src={email} alt="" />
           </label>
-          <div className="col-sm-10">
-            <input type="phone" className="form-control ms-5" id="phone" />
-          </div>
-        </div>
-
-        <div className="row mb-3">
-          <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">
-            Email
-          </label>
-          <div className="col-sm-10">
+          <div className="col-sm-11">
             <input
               type="email"
-              onBlur={handleEmailChange}
-              className="form-control ms-5"
+              placeholder="Enter your email"
+              className="form-control ms-5 userInputForm"
               id="inputEmail3"
+              required
             />
           </div>
         </div>
-        <div className="row mb-3">
-          <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">
-            Password
+        <div className="row mb-3 d-flex align-items-center">
+          <label htmlFor="inputPassword3" className="col-sm-1 col-form-label">
+            <img src={password} alt="" />
           </label>
-          <div className="col-sm-10">
+          <div className="col-sm-11">
             <input
-              onBlur={handlePasswordChange}
               type="password"
-              className="form-control ms-5"
+              placeholder="password"
+              className="form-control ms-5 userInputForm"
               id="inputPassword3"
+              required
             />
           </div>
         </div>
 
-        <button type="submit" className="btn btn-warning">
+        <button type="submit" className="btn-form2">
           Register
         </button>
       </form>
-      <h4 className="text-primary ms-5 mt-4">{msg}</h4>
-      <h4 className="text-danger ms-5 mt-3">{error}</h4>
 
       <h2>OR Using</h2>
-      <img src={google} className="icon" alt="" />
+      <div className="d-flex my-4 ">
+        <img src={google} className="icon" alt="" />
+        <img src={yahoo} className="icon ms-2" alt="" />
+        <img src={facebook} className="icon ms-3" alt="" />
+      </div>
 
       <p>Already have an account?</p>
       <Link to="/login">
-        <button className="btn-regular">Log in</button>
+        <button className="btn-form">Log in</button>
       </Link>
     </div>
   );

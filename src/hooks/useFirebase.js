@@ -1,5 +1,4 @@
 import {
-  createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
@@ -37,11 +36,8 @@ const useFirebase = () => {
 
   return {
     user,
-    auth,
     signInUsingGoogle,
     setUser,
-    createUserWithEmailAndPassword,
-    getAuth,
     logOut,
   };
 };
