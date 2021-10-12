@@ -1,31 +1,37 @@
-import React from "react";
-import { Link, useHistory, useLocation } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-import email from "../../icons/email.png";
-import facebook from "../../icons/facebook.png";
-import google from "../../icons/googleicon.png";
-import password from "../../icons/password.png";
-import yahoo from "../../icons/yahoo.png";
-import "./Login.css";
+import React from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import email from '../../icons/email.png';
+import facebook from '../../icons/facebook.png';
+import google from '../../icons/googleicon.png';
+import password from '../../icons/password.png';
+import yahoo from '../../icons/yahoo.png';
+import './Login.css';
 
 const Login = () => {
-  const { signInUsingGoogle } = useAuth();
+  const {
+    signInUsingGoogle,
+    handleEmailChange,
+    handlePasswordChange,
+    handleLogin,
+    handleResetPassword,
+    error,
+  } = useAuth();
 
   const location = useLocation();
   const history = useHistory();
 
-  const redirect_uri = location.state?.from || "/shop";
+  const redirect_uri = location.state?.from || '/shop';
 
   const handleGoogleClick = () => {
-    signInUsingGoogle().then((result) => {
-      console.log(result.user);
+    signInUsingGoogle().then(result => {
       history.push(redirect_uri);
     });
   };
 
   return (
     <div className="form">
-      <form>
+      <form onSubmit={handleLogin}>
         <h1 className="mb-4">Please Login</h1>
         <div className="row mb-3 d-flex align-items-center">
           <label htmlFor="inputEmail3" className="col-sm-1 col-form-label">
@@ -34,6 +40,7 @@ const Login = () => {
           <div className="col-sm-11">
             <input
               type="email"
+              onBlur={handleEmailChange}
               placeholder="Your registered email.."
               className="form-control ms-5 userInputForm"
               id="inputEmail3"
@@ -48,6 +55,7 @@ const Login = () => {
           <div className="col-sm-11">
             <input
               type="password"
+              onBlur={handlePasswordChange}
               placeholder="password"
               className="form-control ms-5 userInputForm"
               id="inputPassword3"
@@ -59,6 +67,12 @@ const Login = () => {
         <button type="submit" className="btn-form2">
           Sign in
         </button>
+
+        <button className="btn btn-info ms-3" onClick={handleResetPassword}>
+          Reset password
+        </button>
+        <br />
+        {error}
       </form>
 
       <h2>OR Using</h2>

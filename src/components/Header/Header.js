@@ -1,8 +1,8 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-import logo from "../../images/logo.png";
-import "./Header.css";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import logo from '../../images/logo.png';
+import './Header.css';
 
 const Header = () => {
   const { user, logOut } = useAuth();
@@ -25,7 +25,7 @@ const Header = () => {
             <NavLink to="/inventory">Manage Inventory here</NavLink>
           </li>
 
-          {user?.email ? (
+          {user?.displayName ? (
             <li className="nav_link">
               <NavLink to="/login" onClick={logOut}>
                 Logout
@@ -36,10 +36,9 @@ const Header = () => {
               <NavLink to="/login">Login</NavLink>
             </li>
           )}
-          {user?.email && (
+          {user?.displayName && (
             <div className="user-info ms-auto me-3 text-white">
               Hello, {user.displayName}
-              <img src={user.photoURL} className="user-img" alt="" />
             </div>
           )}
         </ul>
