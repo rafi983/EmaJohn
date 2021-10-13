@@ -25,7 +25,11 @@ const useFirebase = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loginMsg, setLoginMsg] = useState('');
+  const [verificationMsg, setVerificationMsg] = useState('');
+  const [resetMsg, setResetMsg] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const auth = getAuth();
 
@@ -53,7 +57,10 @@ const useFirebase = () => {
 
   const handleResetPassword = () => {
     sendPasswordResetEmail(auth, email)
-      .then(() => {})
+      .then(() => {
+        setResetMsg('Reset password link sent !');
+        setLoginMsg('');
+      })
       .catch(error => {
         setError(error.message);
       });
@@ -75,12 +82,15 @@ const useFirebase = () => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then(result => {
+        console.log(result.user);
         setUser(result.user);
         setUserName();
         verifyEmail();
+        setVerificationMsg('Verification e-mail sent!! 😎');
         setError('');
       })
-      .catch(error => setError(error.message));
+      .catch(error => setError(error.message))
+      .finally(() => setIsLoading(false));
   };
 
   const handleLogin = e => {
@@ -88,24 +98,31 @@ const useFirebase = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(result => {
         setUser(result.user);
+        setLoginMsg('Login successful');
         setError('');
       })
       .catch(error => setError(error.message));
   };
 
   const logOut = () => {
+    setIsLoading(true);
     signOut(auth).then(() => {
       setUser({});
+      setIsLoading(false);
     });
   };
 
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, user => {
-      if (user) {
+      if (user && user.emailVerified) {
         setUser(user);
+        setLoginMsg('Login successful');
+        setResetMsg('');
       } else {
         setUser({});
       }
+
+      setIsLoading(false);
     });
 
     return () => unsubscribed;
@@ -114,6 +131,12 @@ const useFirebase = () => {
   return {
     user,
     error,
+    loginMsg,
+    verificationMsg,
+    isLoading,
+    resetMsg,
+    setVerificationMsg,
+    setIsLoading,
     signInUsingGoogle,
     signInUsingYahoo,
     signInUsingFacebook,

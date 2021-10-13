@@ -18,6 +18,11 @@ const Login = () => {
     handleLogin,
     handleResetPassword,
     error,
+    loginMsg,
+    setVerificationMsg,
+    setIsLoading,
+    user,
+    resetMsg,
   } = useAuth();
 
   const location = useLocation();
@@ -26,25 +31,38 @@ const Login = () => {
   const redirect_uri = location.state?.from || '/shop';
 
   const handleGoogleClick = () => {
-    signInUsingGoogle().then(() => {
-      history.push(redirect_uri);
-    });
+    signInUsingGoogle()
+      .then(result => {
+        console.log(result.user);
+        history.push(redirect_uri);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleYahooClick = () => {
-    signInUsingYahoo().then(() => {
-      history.push(redirect_uri);
-    });
+    signInUsingYahoo()
+      .then(() => {
+        history.push(redirect_uri);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleFacebookClick = () => {
-    signInUsingFacebook().then(() => {
-      history.push(redirect_uri);
-    });
+    signInUsingFacebook()
+      .then(() => {
+        history.push(redirect_uri);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  const handleVerifyMsg = () => {
+    setVerificationMsg('');
   };
 
   return (
     <div className="form">
+      {user.email && user.emailVerified && <h1>{loginMsg}</h1>}
+      <h3 className="text-primary">{resetMsg}</h3>
       <form onSubmit={handleLogin}>
         <h1 className="mb-4">Please Login</h1>
         <div className="row mb-3 d-flex align-items-center">
@@ -107,7 +125,9 @@ const Login = () => {
       </div>
       <p>New to ema-john?</p>
       <Link to="/register">
-        <button className="btn-form">Create your account</button>
+        <button className="btn-form" onClick={handleVerifyMsg}>
+          Create your account
+        </button>
       </Link>
     </div>
   );

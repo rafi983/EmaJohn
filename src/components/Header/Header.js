@@ -25,7 +25,7 @@ const Header = () => {
             <NavLink to="/inventory">Manage Inventory here</NavLink>
           </li>
 
-          {user?.displayName ? (
+          {user?.emailVerified ? (
             <li className="nav_link">
               <NavLink to="/login" onClick={logOut}>
                 Logout
@@ -36,9 +36,18 @@ const Header = () => {
               <NavLink to="/login">Login</NavLink>
             </li>
           )}
-          {user?.displayName && (
+          {user?.emailVerified && (
             <div className="user-info ms-auto me-3 text-white">
               Hello, {user.displayName}
+              {user.photoURL ? (
+                <img className="user-img" src={user.photoURL} alt="" />
+              ) : (
+                <img
+                  className="user-img"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBzgsi-SA54nLR0Nqw0bbSVKaUIaGnCN5KQQ&usqp=CAU"
+                  alt=""
+                />
+              )}
             </div>
           )}
         </ul>

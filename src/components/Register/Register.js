@@ -5,7 +5,7 @@ import email from '../../icons/email.png';
 import facebook from '../../icons/facebook.png';
 import google from '../../icons/googleicon.png';
 import password from '../../icons/password.png';
-import user from '../../icons/user.png';
+import userPic from '../../icons/user.png';
 import yahoo from '../../icons/yahoo.png';
 import './Register.css';
 
@@ -16,9 +16,11 @@ const Register = () => {
     handlePasswordChange,
     handleNameChange,
     error,
+    user,
     signInUsingGoogle,
     signInUsingYahoo,
     signInUsingFacebook,
+    verificationMsg,
   } = useAuth();
 
   const location = useLocation();
@@ -43,13 +45,15 @@ const Register = () => {
       history.push(redirect_uri);
     });
   };
+
   return (
     <div className="form">
+      <h3>{verificationMsg}</h3>
       <form onSubmit={handleRegister}>
         <h1 className="mb-4">Register your account</h1>
         <div className="row mb-3 d-flex align-items-center">
           <label htmlFor="name" className="col-sm-1 col-form-label">
-            <img src={user} alt="" />
+            <img src={userPic} alt="" />
           </label>
           <div className="col-sm-11">
             <input
