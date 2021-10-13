@@ -11,6 +11,8 @@ import './Login.css';
 const Login = () => {
   const {
     signInUsingGoogle,
+    signInUsingYahoo,
+    signInUsingFacebook,
     handleEmailChange,
     handlePasswordChange,
     handleLogin,
@@ -24,7 +26,19 @@ const Login = () => {
   const redirect_uri = location.state?.from || '/shop';
 
   const handleGoogleClick = () => {
-    signInUsingGoogle().then(result => {
+    signInUsingGoogle().then(() => {
+      history.push(redirect_uri);
+    });
+  };
+
+  const handleYahooClick = () => {
+    signInUsingYahoo().then(() => {
+      history.push(redirect_uri);
+    });
+  };
+
+  const handleFacebookClick = () => {
+    signInUsingFacebook().then(() => {
       history.push(redirect_uri);
     });
   };
@@ -78,8 +92,18 @@ const Login = () => {
       <h2>OR Using</h2>
       <div className="d-flex my-4 ">
         <img src={google} onClick={handleGoogleClick} className="icon" alt="" />
-        <img src={yahoo} className="icon ms-2" alt="" />
-        <img src={facebook} className="icon ms-3" alt="" />
+        <img
+          src={yahoo}
+          className="icon ms-2"
+          onClick={handleYahooClick}
+          alt=""
+        />
+        <img
+          src={facebook}
+          onClick={handleFacebookClick}
+          className="icon ms-3"
+          alt=""
+        />
       </div>
       <p>New to ema-john?</p>
       <Link to="/register">

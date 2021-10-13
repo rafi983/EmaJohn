@@ -1,7 +1,9 @@
 import {
   createUserWithEmailAndPassword,
+  FacebookAuthProvider,
   getAuth,
   GoogleAuthProvider,
+  OAuthProvider,
   onAuthStateChanged,
   sendEmailVerification,
   sendPasswordResetEmail,
@@ -15,6 +17,8 @@ import initializeFirebase from '../Firebase/firebase.init';
 
 initializeFirebase();
 const googleProvider = new GoogleAuthProvider();
+const yahooProvider = new OAuthProvider('yahoo.com');
+const facebookProvider = new FacebookAuthProvider();
 
 const useFirebase = () => {
   const [user, setUser] = useState({});
@@ -57,6 +61,14 @@ const useFirebase = () => {
 
   const signInUsingGoogle = () => {
     return signInWithPopup(auth, googleProvider);
+  };
+
+  const signInUsingYahoo = () => {
+    return signInWithPopup(auth, yahooProvider);
+  };
+
+  const signInUsingFacebook = () => {
+    return signInWithPopup(auth, facebookProvider);
   };
 
   const handleRegister = e => {
@@ -103,6 +115,8 @@ const useFirebase = () => {
     user,
     error,
     signInUsingGoogle,
+    signInUsingYahoo,
+    signInUsingFacebook,
     handleNameChange,
     handleEmailChange,
     handlePasswordChange,
